@@ -8,6 +8,10 @@ public class Book {
     @SerializedName("items")
     private List<Items> items;
 
+    public Book(List<Items> items) {
+        this.items = items;
+    }
+
     public List<Items> getItems() {
         return items;
     }

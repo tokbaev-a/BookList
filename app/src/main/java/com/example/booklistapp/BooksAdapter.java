@@ -1,5 +1,6 @@
 package com.example.booklistapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
         return new BooksAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull BooksAdapter.ViewHolder holder, int position) {
         final Items currentBook = mItems.get(position);

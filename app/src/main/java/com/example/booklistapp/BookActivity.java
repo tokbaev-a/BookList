@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,13 +47,14 @@ public class BookActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String searchWord = getIntent().getExtras().getString("Search").replace(" ", "+");
+        String searchWord = Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getString("Search")).replace(" ", "+");
         Interface requestInterface = retrofit.create(Interface.class);
         Call<Book> call = requestInterface.getBooks(searchWord);
 
         call.enqueue(new Callback<Book>() {
             @Override
             public void onResponse(Call<Book> call, Response<Book> response) {
+                assert response.body() != null;
                 booksList = response.body().getItems();
                 progressBar.setVisibility(View.GONE);
                 adapter = new BooksAdapter(BookActivity.this, booksList, listener);

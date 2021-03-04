@@ -30,10 +30,15 @@ public class Volume {
     @Expose
     private ImageLinks imageLinks;
 
-    public class ImageLinks {
+    public static class ImageLinks {
         @SerializedName("thumbnail")
         @Expose
         private String mThumbnail;
+
+        public ImageLinks(String mThumbnail) {
+            this.mThumbnail = mThumbnail;
+        }
+
         public String getThumbnail() {
             return mThumbnail;
         }
